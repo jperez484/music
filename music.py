@@ -22,6 +22,17 @@ class Guitarist(Musician):
         print("Be with you in a moment")
         print("Twoning, sproing, splang")
         
+class Pianist(Musician):
+    def __init__(self):
+        self.sounds = ["Din", "Din", "Din", "Din", "Din, ""Dun", "Dunnnnnn"]
+
+    def solo(self, length):
+        for i in range(length):
+            print(self.sounds[i % len(self.sounds)], end=" ")
+        print("Let's get classical...")
+        print("Dun, Dun, Din, Din")
+        
+        
 class Drummer(Musician):
     def __init__(self):
         self.sounds = ["Pa", "Rum", "Pum", "Pum", "Pum", "Ba", "Bum"]
@@ -29,12 +40,31 @@ class Drummer(Musician):
     def solo(self, length):
         for i in range(length):
             print(self.sounds[i % len(self.sounds)], end=" ")
-        print()
         print("And a ONE, and a TWO, and a Three, FOUR, BOOOOOOOOOOOOOM")
+  
+Band_hire = {
+        Guitarist: "Do you want a Guitarist?",
+        Bassist: "Do you want a Bassist?",
+        Pianist: "Do you want a Pianist?",
+}
+
+class Band:
+    def __init__(self):
+        self.members = []
+
+    def interactive_hire(self):
     
-
+        for player in Band_hire: 
+            answer =input(Band_hire[player])
+            if answer in {"Yes","Y", "yes", "y"}:
+            
+                band_member = player()
+                band_member.solo(6)
         
-        
+                #print(band_member.sounds)
+                self.members.append(band_member)
 
-ProgRockGuitarist = Drummer()
-ProgRockGuitarist.solo(4)
+New_Band = Band()
+New_Band.interactive_hire()
+
+  
