@@ -8,8 +8,8 @@ class Musician(object):
         music =[]
         for i in range(length):
             music.append(self.sounds[i % len(self.sounds)])
-            #print(self.sounds[i % len(self.sounds)], end=" ")
-        #print()
+            print(self.sounds[i % len(self.sounds)], end=" ")
+        print()
         return music
         
 
@@ -49,29 +49,34 @@ class Pianist(Musician):
         print("Let's get classical...")
         print("Dun, Dun, Din, Din")
   
-Band_hire = {
-        Guitarist: "Do you want a Guitarist?",
-        Bassist: "Do you want a Bassist?",
-        Pianist: "Do you want a Pianist?",
-}
 
 class Band:
     def __init__(self):
+        
         self.members = []
 
-    def hire(self, player):
+    def hire(self):
     
-        for player in Band_hire: 
-            answer =input(Band_hire[player])
+        for player in (Bassist, Guitarist, Drummer, Pianist): 
+            answer =input("Do you want a " + player.__name__ + "?")
             if answer in {"Yes","Y", "yes", "y"}:
             
                 band_member = player()
                 band_member.solo(6)
-        
                 #print(band_member.sounds)
                 self.members.append(band_member)
+                #print(self.members)
+                
+    def fire(self):
+        
+        for player in (self.members):
+            firing = input("Do you want to fire " + str(player) + "?")
+            if firing in {"Yes","Y", "yes", "y"}:
+                self.members.remove(player)
+                
+band_hired = Band()
+band_hired.hire()
+band_hired.fire()
+print(band_hired.members)
 
-New_Band = Band()
-New_Band.hire()
-
-  
+#objects dont have names...
